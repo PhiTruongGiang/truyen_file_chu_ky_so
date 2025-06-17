@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hộp thư</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Hộp thư đến của {{ current_user.id }}</h2>
+    {% for msg in messages %}
+    <div class="message-box">
+        <strong>📨 Từ:</strong> {{ msg.sender }}<br>
+        <strong>💬 Tin nhắn:</strong> {{ msg.message }}<br>
+        {% if msg.file %}
+        📎 <a href="/download/{{ msg.file }}">Tải file đính kèm</a><br>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <a href="/dashboard">⬅ Quay lại</a>
+</div>
+</body>
+</html>
